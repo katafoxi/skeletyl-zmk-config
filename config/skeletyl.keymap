@@ -143,6 +143,14 @@
       key-positions = <0 4>;
       bindings = <&studio_unlock>;
     };
+    combo_term1 {
+      key-positions = <20 21>;
+      bindings = <&kp LG(BSLH)>;
+    };
+    combo_term2 {
+      key-positions = <28 29>;
+      bindings = <&kp LG(GRAVE)>;
+    };
   };
 
   keymap {
@@ -152,8 +160,8 @@
       bindings = <
         &kp Q       &kp W       &kp E           &kp R        &kp T          &kp Y     &kp U         &kp I        &kp O       &td0
         &hml LGUI A &hml LALT S &hml LSHFT D    &hml LCTRL F &kp G          &kp H     &hmr RCTRL J  &hmr RSHFT K &hmr RALT L &hmr LGUI SEMI
-        &kp Z       &mt LG(X) X &mt LG(C) C     &kp V        &mt LG(V) B    &kp N     &kp M         &kp COMMA    &kp DOT     &kp FSLH
-                                &mt LGUI ESCAPE &mo LWR      &lt RSE RET    &kp SPACE &kp BACKSPACE &kp CAPS
+        &kp Z       &mt LG(X) X &mt LG(C) C     &mt LG(V) V  &kp B          &kp N     &kp M         &kp COMMA    &kp DOT     &kp FSLH
+                                &mt LGUI ESCAPE &mo LWR      &lt RSE RET    &kp SPACE &kp BACKSPACE &mt LSHFT CAPS
       >;      
     };
 
