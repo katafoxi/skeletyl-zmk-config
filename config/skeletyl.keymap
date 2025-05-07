@@ -81,20 +81,6 @@
         <&kp>,
         <&kp>;
     };
-
-    td0: tap_dance_0 {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp P>, <&kp LBKT>;
-    };
-
-    td1: tap_dance_1 {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp SEMI>, <&kp SQT>;
-    };
   };
 
   combos {
@@ -158,8 +144,8 @@
 
     default_layer {
       bindings = <
-        &kp Q       &kp W       &kp E           &kp R        &kp T          &kp Y     &kp U         &kp I        &kp O       &td0
-        &hml LGUI A &hml LALT S &hml LSHFT D    &hml LCTRL F &kp G          &kp H     &hmr RCTRL J  &hmr RSHFT K &hmr RALT L &td1
+        &kp Q       &kp W       &kp E           &kp R        &kp T          &kp Y     &kp U         &kp I        &kp O       &kp P
+        &hml LGUI A &hml LALT S &hml LSHFT D    &hml LCTRL F &kp G          &kp H     &hmr RCTRL J  &hmr RSHFT K &hmr RALT L &hmr LGUI SEMI
         &kp Z       &mt LG(X) X &mt LG(C) C     &mt LG(V) V  &kp B          &kp N     &kp M         &kp COMMA    &kp DOT     &kp FSLH
                                 &mt LGUI ESCAPE &mo LWR      &lt RSE RET    &kp SPACE &kp BACKSPACE &mt LSHFT CAPS
       >;      
@@ -168,7 +154,7 @@
     lower_layer {
       bindings = <
         &kp N1            &kp N2          &kp N3             &kp N4                   &kp N5                     &kp N6              &kp N7             &kp N8               &kp N9                        &kp N0               
-        &hml_s LGUI EXCL  &hml_s LALT AT  &hml_s LSHFT HASH  &hml_s LCTRL DOLLAR      &kp PERCENT                &hmr_s RCTRL CARET  &hmr_s RSHFT AMPS  &hmr_s RALT ASTRK    &hmr_s LGUI LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+        &hml_s LGUI EXCL  &hml_s LALT AT  &hml_s LSHFT HASH  &hml_s LCTRL DOLLAR      &kp PERCENT                &kp CARET           &hmr_s RCTRL AMPS  &hmr_s RSHFT ASTRK   &hmr_s RALT LEFT_PARENTHESIS  &hmr_s LGUI RIGHT_PARENTHESIS
         &none             &kp KP_PLUS     &kp KP_MINUS       &kp LEFT_BRACE           &kp LEFT_BRACKET           &kp RIGHT_BRACKET   &kp RIGHT_BRACE    &kp MINUS            &kp EQUAL                     &kp BSLH                 
                                           &mt LGUI ESCAPE    &trans                   &none                      &trans              &kp DEL            &kp QMARK
       >;
