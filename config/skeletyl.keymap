@@ -3,10 +3,9 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24  
+#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24
 #define KEYS_R 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
 #define THUMBS 30 31 32 33 34 35
-
 #define DEF 0
 #define LWR 1
 #define RSE 2
@@ -14,186 +13,187 @@
 #define GAME 4
 #define RESET 5
 
-&mt {
-  flavor = "tap-preferred";
-};
+&mt { flavor = "tap-preferred"; };
 
 &lt {
-  flavor = "balanced";
-  tapping-term-ms = <200>;
-  quick-tap-ms = <175>;
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <175>;
 };
 
 / {
-  behaviors {
-    hml: hml {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <250>;
-      hold-trigger-key-positions = <KEYS_R THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
+    behaviors {
+        hml: hml {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <2000>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <250>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+            bindings = <&kp>, <&kp>;
+        };
+
+        hmr: hmr {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <2000>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <250>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+            bindings = <&kp>, <&kp>;
+        };
+
+        hml_s: hml_s {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <2000>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <0>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+            bindings = <&kp>, <&kp>;
+        };
+
+        hmr_s: hmr_s {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <2000>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <0>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+            bindings = <&kp>, <&kp>;
+        };
     };
 
-    hmr: hmr {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <250>;
-      hold-trigger-key-positions = <KEYS_L THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
+    combos {
+        compatible = "zmk,combos";
+        timeout-ms = <20>;
+        require-prior-idle-ms = <250>;
+
+        combo_reset_layer_left {
+            key-positions = <20 24>;
+            bindings = <&to RESET>;
+        };
+
+        combo_reset_layer_right {
+            key-positions = <25 29>;
+            bindings = <&to RESET>;
+        };
+
+        combo_reset_central {
+            key-positions = <32 33>;
+            bindings = <&bootloader>;
+            require-prior-idle-ms = <2000>;
+        };
+
+        combo_normal {
+            key-positions = <7 8>;
+            bindings = <&to DEF>;
+        };
+
+        combo_fn {
+            key-positions = <27 28>;
+            bindings = <&sl FUNCTION>;
+        };
+
+        combo_game {
+            key-positions = <5 9>;
+            bindings = <&to GAME>;
+        };
+
+        combo_esc {
+            key-positions = <1 2>;
+            bindings = <&kp ESCAPE>;
+        };
+
+        combo_tab {
+            key-positions = <2 3>;
+            bindings = <&kp TAB>;
+        };
+
+        combo_cdel {
+            key-positions = <11 12>;
+            bindings = <&kp LC(BACKSPACE)>;
+        };
+
+        combo_unlock {
+            key-positions = <0 4>;
+            bindings = <&studio_unlock>;
+        };
+
+        combo_term1 {
+            key-positions = <20 21>;
+            bindings = <&kp LG(BSLH)>;
+        };
+
+        combo_term2 {
+            key-positions = <28 29>;
+            bindings = <&kp LG(GRAVE)>;
+        };
     };
 
-    hml_s: hml_s {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <0>;
-      hold-trigger-key-positions = <KEYS_R THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
-    };
+    keymap {
+        compatible = "zmk,keymap";
 
-    hmr_s: hmr_s {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "balanced";
-      tapping-term-ms = <2000>;
-      quick-tap-ms = <175>;
-      require-prior-idle-ms = <0>;
-      hold-trigger-key-positions = <KEYS_L THUMBS>;
-      hold-trigger-on-release;
-      bindings =
-        <&kp>,
-        <&kp>;
-    };
-  };
+        default_layer {
+            bindings = <
+&kp Q        &kp W        &kp E         &kp R         &kp T        &kp Y      &kp U          &kp I           &kp O        &kp P
+&hml LGUI A  &hml LALT S  &hml LSHFT D  &hml LCTRL F  &kp G        &kp H      &hmr RCTRL J   &hmr RSHFT K    &hmr RALT L  &hmr LGUI SEMI
+&kp Z        &mt LG(X) X  &mt LG(C) C   &mt LG(V) V   &kp B        &kp N      &kp M          &kp COMMA       &kp DOT      &kp FSLH
+                          &kp LGUI      &mo LWR       &lt RSE RET  &kp SPACE  &kp BACKSPACE  &mt LSHFT CAPS
+            >;
+        };
 
-  combos {
-    compatible = "zmk,combos";
-    timeout-ms = <20>;
-    require-prior-idle-ms = <250>;
+        lower_layer {
+            bindings = <
+&kp N1            &kp N2          &kp N3             &kp N4               &kp N5            &kp N6             &kp N7             &kp N8              &kp N9                        &kp N0
+&hml_s LGUI EXCL  &hml_s LALT AT  &hml_s LSHFT HASH  &hml_s LCTRL DOLLAR  &kp PERCENT       &kp CARET          &hmr_s RCTRL AMPS  &hmr_s RSHFT ASTRK  &hmr_s RALT LEFT_PARENTHESIS  &hmr_s LGUI RIGHT_PARENTHESIS
+&none             &kp KP_PLUS     &kp KP_MINUS       &kp LEFT_BRACE       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RIGHT_BRACE    &kp MINUS           &kp EQUAL                     &kp BSLH
+                                  &mt LGUI ESCAPE    &trans               &none             &trans             &kp DEL            &kp QMARK
+            >;
+        };
 
-    combo_reset_layer_left {
-      key-positions = <20 24>;
-      bindings = <&to RESET>;
-    };
-    combo_reset_layer_right {
-      key-positions = <25 29>;
-      bindings = <&to RESET>;
-    };
-    combo_reset_central {
-      key-positions = <32 33>;
-      bindings = <&bootloader>;
-      require-prior-idle-ms = <2000>;
-    };
-    combo_normal {
-      key-positions = <7 8>;
-      bindings = <&to DEF>;
-    };
-    combo_fn {
-      key-positions = <27 28>;
-      bindings = <&sl FUNCTION>;
-    };
-    combo_game {
-      key-positions = <5 9>;
-      bindings = <&to GAME>;
-    };
-    combo_esc {
-      key-positions = <1 2>;
-      bindings = <&kp ESCAPE>;
-    };
-    combo_tab {
-      key-positions = <2 3>;
-      bindings = <&kp TAB>;
-      };
-    combo_cdel {
-      key-positions = <11 12>;
-      bindings = <&kp LC(BACKSPACE)>;
-    };
-    combo_unlock {
-      key-positions = <0 4>;
-      bindings = <&studio_unlock>;
-    };
-    combo_term1 {
-      key-positions = <20 21>;
-      bindings = <&kp LG(BSLH)>;
-    };
-    combo_term2 {
-      key-positions = <28 29>;
-      bindings = <&kp LG(GRAVE)>;
-    };
-  };
+        raise_layer {
+            bindings = <
+&kp LS(LG(N4))  &kp LS(LC(LG(N4)))  &kp LS(LG(N5))  &kp PAGE_DOWN  &kp LBKT   &none               &kp PG_UP            &kp PG_DN     &kp HOME       &kp LBKT
+&none           &none               &none           &kp BSLH       &kp SQT    &kp LEFT            &kp DOWN             &kp UP_ARROW  &kp RIGHT      &kp SQT
+&none           &none               &none           &none          &kp GRAVE  &kp LC(LEFT_ARROW)  &kp LC(RIGHT_ARROW)  &kp LA(LEFT)  &kp LA(RIGHT)  &kp GRAVE
+                                    &kp LGUI        &none          &trans     &trans              &trans               &trans
+            >;
+        };
 
-  keymap {
-    compatible = "zmk,keymap";
+        Fun {
+            bindings = <
+&kp F11   &kp F12  &none   &none   &kp LC(LA(DEL))  &none    &none   &none      &none      &none
+&trans    &kp F6   &kp F7  &kp F8  &kp F9           &kp F10  &none   &kp LCTRL  &kp LSHFT  &kp LALT
+&kp LGUI  &trans   &kp F1  &kp F2  &kp F3           &kp F4   &kp F5  &none      &none      &none
+                   &none   &none   &trans           &none    &none   &none
+            >;
+        };
 
-    default_layer {
-      bindings = <
-        &kp Q       &kp W       &kp E           &kp R        &kp T          &kp Y     &kp U         &kp I        &kp O       &kp P
-        &hml LGUI A &hml LALT S &hml LSHFT D    &hml LCTRL F &kp G          &kp H     &hmr RCTRL J  &hmr RSHFT K &hmr RALT L &hmr LGUI SEMI
-        &kp Z       &mt LG(X) X &mt LG(C) C     &mt LG(V) V  &kp B          &kp N     &kp M         &kp COMMA    &kp DOT     &kp FSLH
-                                &mt LGUI ESCAPE &mo LWR      &lt RSE RET    &kp SPACE &kp BACKSPACE &mt LSHFT CAPS
-      >;      
-    };
+        Game {
+            bindings = <
+&kp ESCAPE  &kp Q  &kp W     &kp E      &kp R  &none   &none   &none   &none   &none
+&kp LCTRL   &kp A  &kp S     &kp D      &kp F  &none   &none   &none   &none   &none
+&kp LSHIFT  &kp Z  &kp X     &kp C      &kp V  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5
+                   &kp LALT  &kp SPACE  &kp M  &kp T   &kp B   &kp H
+            >;
+        };
 
-    lower_layer {
-      bindings = <
-        &kp N1            &kp N2          &kp N3             &kp N4                   &kp N5                     &kp N6              &kp N7             &kp N8               &kp N9                        &kp N0               
-        &hml_s LGUI EXCL  &hml_s LALT AT  &hml_s LSHFT HASH  &hml_s LCTRL DOLLAR      &kp PERCENT                &kp CARET           &hmr_s RCTRL AMPS  &hmr_s RSHFT ASTRK   &hmr_s RALT LEFT_PARENTHESIS  &hmr_s LGUI RIGHT_PARENTHESIS
-        &none             &kp KP_PLUS     &kp KP_MINUS       &kp LEFT_BRACE           &kp LEFT_BRACKET           &kp RIGHT_BRACKET   &kp RIGHT_BRACE    &kp MINUS            &kp EQUAL                     &kp BSLH                 
-                                          &mt LGUI ESCAPE    &trans                   &none                      &trans              &kp DEL            &kp QMARK
-      >;
+        Reset {
+            bindings = <
+&none         &none         &none         &none         &none         &none         &none         &none         &none         &none
+&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &bt BT_CLR
+&out OUT_TOG  &none         &none         &none         &none         &none         &none         &none         &none         &out OUT_TOG
+                            &none         &none         &bootloader   &bootloader   &none         &none
+            >;
+        };
     };
-
-    raise_layer {
-      bindings = <
-        &kp LS(LG(N4))  &kp LS(LC(LG(N4)))  &kp LS(LG(N5))  &kp PAGE_DOWN  &kp LBKT          &none                &kp PG_UP            &kp PG_DN            &kp HOME       &kp LBKT
-        &none           &none               &none           &kp BSLH       &kp SQT           &kp LEFT             &kp DOWN             &kp UP_ARROW         &kp RIGHT      &kp SQT   
-        &none           &none               &none           &none          &kp GRAVE         &kp LC(LEFT_ARROW)   &kp LC(RIGHT_ARROW)  &kp LA(LEFT)         &kp LA(RIGHT)  &kp GRAVE
-                                            &kp LGUI        &none          &trans            &trans               &trans               &trans
-      >;
-    };
-
-    Fun {
-      bindings = <
-        &kp F11 &kp F12 &none  &none  &kp LC(LA(DEL)) &none &none     &none     &none    &none         &trans   
-        &kp F6  &kp F7  &kp F8 &kp F9 &kp F10         &none &kp LCTRL &kp LSHFT &kp LALT &kp LGUI      &trans   
-        &kp F1  &kp F2  &kp F3 &kp F4 &kp F5          &none &none     &none     &none    &none         &trans
-                        &none  &none  &none           &none &none &none
-      >;
-    };
-
-    Game {
-      bindings = <
-        &kp ESCAPE &kp Q &kp W     &kp E     &kp R          &none  &none    &none    &none    &none 
-        &kp LCTRL  &kp A &kp S     &kp D     &kp F          &none  &none    &none    &none    &none 
-        &kp LSHIFT &kp Z &kp X     &kp C     &kp V          &kp N1 &kp N2   &kp N3   &kp N4   &kp N5
-                         &kp LALT  &kp SPACE &kp M          &kp T  &kp B    &kp H 
-      >;
-    };
-
-    Reset {
-      bindings = <
-        &none        &none        &none        &none        &none                 &none        &none        &none        &none        &none     
-        &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3          &bt BT_SEL 3 &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0 &bt BT_CLR    
-        &out OUT_TOG &none        &none        &none        &none                 &none        &none        &none        &none        &out OUT_TOG
-                                  &none        &none        &bootloader           &bootloader  &none        &none               
-      >;
-    };
-  };
 };
